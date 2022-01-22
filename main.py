@@ -36,9 +36,11 @@ def main():
     #result = pool.starmap(scoreFirstGuess, [(word, wordset) for word in wordset.index])
     pool.close()
 
-    with open('./results.csv', 'w') as f:
-        write = csv.writer(f)
-        write.writerows(result.sort(key='Median', reverse=False))
+    keys = result[0].keys()
+    with open('./results.csv', 'w', newline='') as output_file:
+        dict_writer = csv.DictWriter(output_file, keys)
+        dict_writer.writeheader()
+        dict_writer.writerows(result)
 
 if __name__ == '__main__':
     main()
