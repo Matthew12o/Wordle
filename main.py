@@ -28,12 +28,11 @@ def main():
     pool_size = mp.cpu_count()
     pool = mp.Pool(pool_size)
     ## for testing 
-    test_data = wordset[0:pool_size]
-    result = pool.starmap(scoreFirstGuess, [(word, wordset) for word in test_data.index])
+    #test_data = wordset[0:pool_size]
+    #result = pool.starmap(scoreFirstGuess, [(word, wordset) for word in test_data.index])
 
     ## for full run
-    #test_data = wordset[0:pool_size]
-    #result = pool.starmap(scoreFirstGuess, [(word, wordset) for word in wordset.index])
+    result = pool.starmap(scoreFirstGuess, [(word, wordset) for word in wordset.index])
     pool.close()
 
     keys = result[0].keys()
